@@ -121,18 +121,13 @@ if metabase_file and spx_file:
 
 # Display the result and download button if the dataframe exists in session state
 if st.session_state.final_df is not None:
-    st.subheader("📋 Vendor Analyst Preview")
-    st.dataframe(st.session_state.final_df.head(100), use_container_width=True)
-
-    # === DOWNLOAD BUTTON (CSV) ===
-    # Convert the dataframe to CSV bytes
     csv_data = to_csv(st.session_state.final_df)
-
     st.download_button(
-        "📥 Download Full Result CSV",
+        label="📥 Download Full Result CSV",
         data=csv_data,
         file_name='vendor_analyst_result.csv',
-        mime='text/csv'
+        mime='text/csv',
+        on_click="ignore"
     )
 
 elif not metabase_file or not spx_file:
