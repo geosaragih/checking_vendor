@@ -111,6 +111,9 @@ if metabase_file and spx_file:
 
             # Store final result
             st.session_state.final_df = result_df
+            # Drop duplicate rows with exactly the same information
+            st.session_state.final_df.drop_duplicates(inplace=True)
+
             st.success("✅ Vendor Analyst generated successfully!")
 
         except Exception as e:
